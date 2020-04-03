@@ -4,16 +4,28 @@
     "url": "https://github.com/scottbedard/vue-use-three/issues"
   },
   "description": "A set of composition functions and utilities to integrate Vue.js with Three.js",
+  "devDependencies": {
+    "@types/jest": "^25.1.5",
+    "jest": "^25.2.6",
+    "rollup": "^2.3.2",
+    "rollup-plugin-delete": "^1.2.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-jest": "^25.3.0",
+    "typescript": "^3.8.3"
+  },
   "homepage": "https://github.com/scottbedard/vue-use-three#readme",
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "name": "vue-use-three",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scottbedard/vue-use-three.git"
   },
   "scripts": {
+    "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "unpkg": "dist/index.bundle.js",
   "version": "0.0.1"
 }
