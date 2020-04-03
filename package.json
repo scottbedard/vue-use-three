@@ -1,0 +1,19 @@
+{
+  "author": "Scott Bedard",
+  "bugs": {
+    "url": "https://github.com/scottbedard/vue-use-three/issues"
+  },
+  "description": "A set of composition functions and utilities to integrate Vue.js with Three.js",
+  "homepage": "https://github.com/scottbedard/vue-use-three#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "vue-use-three",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottbedard/vue-use-three.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}
