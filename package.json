@@ -6,12 +6,18 @@
   "description": "A set of composition functions and utilities to integrate Vue.js with Three.js",
   "devDependencies": {
     "@types/jest": "^25.1.5",
+    "@vue/composition-api": "^0.5.0",
+    "@vue/runtime-dom": "^3.0.0-alpha.11",
+    "consola": "^2.11.3",
+    "fs-extra": "^9.0.0",
+    "inquirer": "^7.1.0",
     "jest": "^25.2.6",
     "rollup": "^2.3.2",
     "rollup-plugin-delete": "^1.2.0",
     "rollup-plugin-typescript2": "^0.27.0",
     "ts-jest": "^25.3.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "vue": "^2.6.11"
   },
   "homepage": "https://github.com/scottbedard/vue-use-three#readme",
   "license": "MIT",
@@ -23,7 +29,7 @@
     "url": "git+https://github.com/scottbedard/vue-use-three.git"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "node ./scripts/build",
     "test": "jest --coverage"
   },
   "unpkg": "dist/index.bundle.js",
