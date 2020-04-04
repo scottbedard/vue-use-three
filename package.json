@@ -37,6 +37,6 @@
     "clean": "rimraf dist",
     "test": "jest --coverage"
   },
-  "unpkg": "dist/index.bundle.js",
+  "unpkg": "dist/index.umd.min.js",
   "version": "0.0.1"
 }
