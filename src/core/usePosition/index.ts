@@ -1,3 +1,11 @@
+import { reactive } from '../../api';
+
 export function usePosition() {
-  console.log('use position');
+  const position = reactive({
+    x: 0,
+    y: 0,
+    z: 0,
+  });
+
+  return { position };
 }
