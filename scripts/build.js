@@ -10,7 +10,7 @@ const metaFiles = ['LICENSE'];
 const rootDir = path.resolve(__dirname, '..');
 const pkgDir = path.join(rootDir, 'package.json');
 
-async function buildMetaFiles(targetVersion, packageVersion) {
+async function buildMetaFiles(targetVersion, pkgVersion) {
   const pkgDist = path.resolve(__dirname, '..', 'dist/core')
 
   for (const metaFile of metaFiles)
@@ -19,6 +19,9 @@ async function buildMetaFiles(targetVersion, packageVersion) {
   await fs.copyFile(path.join(rootDir, 'README.md'), path.join(pkgDist, 'README.md'))
 
   const pkgJson = JSON.parse(JSON.stringify(require('../package.json')));
+  pkgJson.version = pkgVersion
+  delete pkgJson.devDependencies
+  delete pkgJson.scripts
 
   if (targetVersion === 2) {
     pkgJson.peerDependencies = {
@@ -32,9 +35,7 @@ async function buildMetaFiles(targetVersion, packageVersion) {
       vue: 'next',
     }
   }
-
-  console.log(pkgJson);
-
+  
   await fs.writeFile(path.join(pkgDist, 'package.json'), `${JSON.stringify(pkgJson, null, 2)}\n`)
 }
 
@@ -70,10 +71,15 @@ async function buildFor(targetVersion, publishCallback) {
 
     consola.success(`Build for Vue ${targetVersion}.x finished`);
 
-    await buildMetaFiles(targetVersion, packageVersion);
+    await buildMetaFiles(targetVersion, pkgVersion);
   } catch (e) {
     err = e;
+  } finally {
+    await fs.writeFile(pkgDir, rawPkg)
+    await restoreApi()
   }
+  if (err)
+    throw err
 }
 
 async function buildAll() {
