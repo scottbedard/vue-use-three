@@ -28,6 +28,11 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "name": "vue-use-three",
+  "peerDependencies": {
+    "@vue/composition-api": "^0.5.0",
+    "@vue/runtime-dom": "^3.0.0",
+    "vue": "^2.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scottbedard/vue-use-three.git"

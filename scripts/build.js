@@ -11,36 +11,31 @@ const rootDir = path.resolve(__dirname, '..');
 const pkgDir = path.join(rootDir, 'package.json');
 
 async function buildMetaFiles(targetVersion, packageVersion) {
-  for (const [pkg, options] of packages) {
-    const pkgSrc = path.resolve(__dirname, '..', 'src', pkg);
+  const pkgDist = path.resolve(__dirname, '..', 'dist/core')
 
-    for (const metaFile of metaFiles)
-      await fs.copyFile(path.join(rootDir, metaFile), path.join(packageDist, metaFile))
+  for (const metaFile of metaFiles)
+    await fs.copyFile(path.join(rootDir, metaFile), path.join(pkgDist, metaFile))
 
-    if (pkg === 'core')
-      await fs.copyFile(path.join(rootDir, 'README.md'), path.join(packageDist, 'README.md'))
-    else
-      await fs.copyFile(path.join(pkgSrc, 'README.md'), path.join(packageDist, 'README.md'))
+  await fs.copyFile(path.join(rootDir, 'README.md'), path.join(pkgDist, 'README.md'))
 
-    const rawPkg = JSON.parse(require('../package.json'));
+  const pkgJson = JSON.parse(JSON.stringify(require('../package.json')));
 
-    if (targetVersion === 2) {
-      rawPkg.peerDependencies = {
-        vue: '^2.6.0',
-        '@vue/composition-api': '^0.3.0',
-        ...(options.peerDependencies || {}),
-      }
+  if (targetVersion === 2) {
+    pkgJson.peerDependencies = {
+      vue: '^2.6.0',
+      '@vue/composition-api': '^0.5.0',
     }
-
-    if (targetVersion === 3) {
-      rawPkg.peerDependencies = {
-        vue: 'next',
-        ...(options.peerDependencies || {}),
-      }
-    }
-
-    await fs.writeFile(path.join(packageDist, 'package.json'), `${JSON.stringify(rawPkg, null, 2)}\n`)
   }
+
+  if (targetVersion === 3) {
+    pkgJson.peerDependencies = {
+      vue: 'next',
+    }
+  }
+
+  console.log(pkgJson);
+
+  await fs.writeFile(path.join(pkgDist, 'package.json'), `${JSON.stringify(pkgJson, null, 2)}\n`)
 }
 
 async function buildFor(targetVersion, publishCallback) {
