@@ -9,14 +9,14 @@ async function getVersion () {
   return JSON.parse(rawPkg).version;
 }
 
-async function updateImport () {
+async function updateImport (pkgVersion) {
   const files = fs
     .readdirSync(srcDir)
     .filter(f => f.startsWith('use'))
     .sort();
 
   let content = '';
-  content += `export const version = '${await getVersion()}'\n\n`;
+  content += `export const version = '${pkgVersion || await getVersion()}'\n\n`;
   content += files.map(f => `export * from './${f}'\n`).join('');
 
   fs.writeFileSync(path.join(srcDir, 'index.ts'), content);

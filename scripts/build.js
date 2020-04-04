@@ -1,7 +1,6 @@
 const consola = require('consola');
 const exec = require('child_process').execSync;
 const fs = require('fs-extra');
-const packages = require('./packages');
 const path = require('path');
 const { backupApi, restoreApi, switchApi } = require('./switch');
 const { selectVersion } = require('./select_version');
