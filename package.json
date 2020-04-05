@@ -61,6 +61,7 @@
     "clean": "rimraf dist",
     "lint": "eslint './{src,scripts}/**/*.{js,ts,tsx,vue,md}'",
     "lint:fix": "npm run lint -- --fix",
+    "publish:ci": "node ./scripts/publish.js all",
     "switch": "node ./scripts/switch",
     "test": "jest --coverage"
   },

@@ -43,5 +43,6 @@ module.exports = {
     'indent': ['error', 2],
     'keyword-spacing': 'error',
     'semi': ['error', 'always', { omitLastInOneLineBlock: true }],
+    'space-before-function-paren': ['error', 'never'],
   },
 };

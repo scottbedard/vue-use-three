@@ -4,7 +4,7 @@ import { usePosition } from './index';
 import Vue from 'vue';
 
 describe('usePosition', () => {
-  it('syncs object position', async () => {
+  it('syncs object position', async() => {
     const obj = new Object3D();
 
     const props = reactive({
