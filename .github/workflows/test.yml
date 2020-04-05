@@ -1,10 +1,6 @@
 name: Test
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -21,10 +17,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install
     - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-      env:
-        CI: true
-    - name: Codecov
+    - name: Test Vue 2.x
+    - run: |
+        run switch 2
+        npm test
+    - name: Report coverage
       run: bash <(curl -s https://codecov.io/bash)
