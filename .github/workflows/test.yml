@@ -19,9 +19,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install
       run: npm ci
-    - name: Test Vue 2.x
+    - name: Test 2.x
       run: |
         npm run switch 2
         npm test
     - name: Report coverage
       run: bash <(curl -s https://codecov.io/bash)
+    - name: Build 2.x
+      run: npm run build 2
+    - name: Build 3.x
+      run: npm run build 3
