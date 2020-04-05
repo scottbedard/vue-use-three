@@ -18,9 +18,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install
-    - run: npm ci
+      run: npm ci
     - name: Test Vue 2.x
-    - run: |
+      run: |
         run switch 2
         npm test
     - name: Report coverage
