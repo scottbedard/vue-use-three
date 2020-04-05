@@ -16,6 +16,7 @@
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-markdown": "^1.0.2",
     "fs-extra": "^9.0.0",
+    "husky": "^4.2.3",
     "inquirer": "^7.1.0",
     "jest": "^25.2.6",
     "lint-staged": "^10.1.1",
@@ -31,7 +32,18 @@
     "vue": "^2.6.11"
   },
   "homepage": "https://github.com/scottbedard/vue-use-three#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "license": "MIT",
+  "lint-staged": {
+    "{src,scripts}/**/*.{js,ts,tsx,vue,md} *.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "main": "index.js",
   "module": "index.esm.js",
   "name": "vue-use-three",
