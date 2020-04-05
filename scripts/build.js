@@ -72,6 +72,10 @@ async function buildFor(targetVersion, publishCallback) {
     consola.success(`Build for Vue ${targetVersion}.x finished`);
 
     await buildMetaFiles(targetVersion, pkgVersion);
+
+    if (publishCallback) {
+      await publishCallback(targetVersion, pkgVersion);
+    }
   } catch (e) {
     err = e;
   } finally {
