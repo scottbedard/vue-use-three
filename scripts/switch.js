@@ -12,7 +12,7 @@ async function backupApi() {
       path.join(srcDir, 'api.ts'),
       path.join(srcDir, 'api.backup.ts'),
     )
-  } catch {}
+  } catch (e) {}
 }
 
 async function restoreApi() {
@@ -25,7 +25,7 @@ async function restoreApi() {
     await fs.remove(
       path.join(srcDir, 'api.backup.ts'),
     );
-  } catch {}
+  } catch (e) {}
 }
 
 async function switchApi(targetVersion, pkgVersion) {
