@@ -1,23 +1,20 @@
 import { Object3D } from 'three';
 import { computed, watch } from '../../api';
-
-type Position = { x?: number; y?: number; z?: number }
-type NormalizedPosition = { x: number; y: number; z: number }
-
-const normalize = (position: Position): NormalizedPosition => Object.assign({ x: 0, y: 0, z: 0 }, position);
+import { VectorObj } from '../../types';
+import { normalizeVectorObj } from '../../utils/object';
 
 /**
  * Sync object position.
  *
  * @param {Object3D} obj 
- * @param {() => Position} fn
+ * @param {() => VectorObj} fn
  *
  * @return {void}
  */
-export function usePosition(obj: Object3D, fn: () => Position): void {
-  const normalizedPosition = computed(() => normalize(fn()));
+export function usePosition(obj: Object3D, fn: () => VectorObj): void {
+  const position = computed(() => normalizeVectorObj(fn()));
 
-  watch(normalizedPosition, ({ x, y, z }: NormalizedPosition) => {
+  watch(position, ({ x, y, z }) => {
     obj.position.x = x;
     obj.position.y = y;
     obj.position.z = z;
