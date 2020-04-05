@@ -39,8 +39,9 @@ module.exports = {
     'brace-style': 'error',
     'comma-dangle': ['error', 'always-multiline'],
     'curly': 'error',
+    'eol-last': ['error', 'always'],
     'indent': ['error', 2],
-    'semi': ['error', 'always', { omitLastInOneLineBlock: true }],
     'keyword-spacing': 'error',
+    'semi': ['error', 'always', { omitLastInOneLineBlock: true }],
   },
 };
