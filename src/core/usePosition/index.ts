@@ -4,7 +4,7 @@ import { computed, watch } from '../../api';
 type Position = { x?: number, y?: number, z?: number }
 type NormalizedPosition = { x: number, y: number, z: number }
 
-const normalize = (position: Position) => ({ x: 0, y: 0, z: 0, ...position });
+const normalize = (position: Position) => Object.assign({ x: 0, y: 0, z: 0 }, position);
 
 /**
  * Sync object position.
