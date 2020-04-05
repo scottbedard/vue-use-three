@@ -10,17 +10,21 @@ const distDir = path.resolve(__dirname, '..', 'dist');
 async function publishFor(targetVueVersion) {
   assert([2, 3].includes(targetVueVersion));
 
-  await buildFor(targetVueVersion, async(targetVersion, packageVersion) => {
+  await buildFor(targetVueVersion, async(targetVersion, pkgVersion) => {
     consola.info(`Publish for Vue ${targetVueVersion}.x`);
+
+    consola.info(distDir);
+
+    exec('ls -a');
 
     if (targetVueVersion === 3) {
       exec('npm publish --access public --tag next', { stdio: 'inherit', cwd: distDir });
-      exec(`npm dist-tag add vue-use-three@${packageVersion} vue3`, { stdio: 'inherit', cwd: distDir });
+      exec(`npm dist-tag add vue-use-three@${pkgVersion} vue3`, { stdio: 'inherit', cwd: distDir });
     }
 
     if (targetVueVersion === 2) {
       exec('npm publish --access public', { stdio: 'inherit', cwd: distDir });
-      exec(`npm dist-tag add vue-use-three@${packageVersion} vue2`, { stdio: 'inherit', cwd: distDir });
+      exec(`npm dist-tag add vue-use-three@${pkgVersion} vue2`, { stdio: 'inherit', cwd: distDir });
     }
 
     consola.success(`Published vue-use-three for Vue ${targetVueVersion}.x`);
