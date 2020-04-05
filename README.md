@@ -1,5 +1,13 @@
 # vue-use-three
 
+[![Build status](https://img.shields.io/github/workflow/status/scottbedard/vue-use-three/Test)](https://github.com/scottbedard/vue-use-three/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/scottbedard/vue-use-three)](https://codecov.io/gh/scottbedard/vue-use-three)
+[![Dependencies](https://david-dm.org/scottbedard/vue-use-three/status.svg)](https://david-dm.org/scottbedard/vue-use-three)
+[![Dev dependencies](https://david-dm.org/scottbedard/vue-use-three/dev-status.svg)](https://david-dm.org/scottbedard/vue-use-three?type=dev)
+[![Peer dependencies](https://david-dm.org/scottbedard/vue-use-three/peer-status.svg)](https://david-dm.org/scottbedard/vue-use-three?type=peer)
+[![NPM](https://img.shields.io/npm/v/vue-use-three)](https://www.npmjs.com/package/vue-use-three)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/scottbedard/vue-use-three/blob/master/LICENSE)
+
 ## 🚀 Project Goals
 
 The primary goal of this library is to ease the pain in creating apps with [Vue.js](https://vuejs.org/) and [Three.js](https://threejs.org/). Several frameworks have demonstrated that components are great for managing [3D scene graphs](https://threejsfundamentals.org/threejs/lessons/threejs-scenegraph.html), but have a couple of drawbacks.
