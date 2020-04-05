@@ -14,11 +14,11 @@ const normalize = (position: Position): NormalizedPosition => Object.assign({ x:
  *
  * @return {void}
  */
-export function usePosition(obj: Object3D, fn: () => Position): void {
+export function usePosition(obj: Object3D, fn: () => Position) {
   const normalizedPosition = computed(() => normalize(fn()))
 
   watch(normalizedPosition, ({ x, y, z }: NormalizedPosition) => {
-     obj.position.x = x;
+     obj.position.x = x
     obj.position.y = y;
     obj.position.z = z;
   }, { deep: true });
