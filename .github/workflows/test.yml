@@ -21,7 +21,7 @@ jobs:
       run: npm ci
     - name: Test Vue 2.x
       run: |
-        run switch 2
+        npm run switch 2
         npm test
     - name: Report coverage
       run: bash <(curl -s https://codecov.io/bash)
