@@ -27,5 +27,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'indent': ['error', 2],
+    'semi': ['error', 'always', { omitLastInOneLineBlock: true }],
   },
 };
