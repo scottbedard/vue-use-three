@@ -19,6 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install
       run: npm ci
+    - name: Lint
+      run: npm run lint
     - name: Test 2.x
       run: |
         npm run switch 2

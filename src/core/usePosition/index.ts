@@ -18,7 +18,7 @@ export function usePosition(obj: Object3D, fn: () => Position): void {
   const normalizedPosition = computed(() => normalize(fn()))
 
   watch(normalizedPosition, ({ x, y, z }: NormalizedPosition) => {
-    obj.position.x = x;
+     obj.position.x = x;
     obj.position.y = y;
     obj.position.z = z;
   }, { deep: true });
