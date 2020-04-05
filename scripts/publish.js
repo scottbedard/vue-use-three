@@ -13,10 +13,6 @@ async function publishFor(targetVueVersion) {
   await buildFor(targetVueVersion, async(targetVersion, pkgVersion) => {
     consola.info(`Publish for Vue ${targetVueVersion}.x`);
 
-    consola.info(distDir);
-
-    exec('ls -a');
-
     if (targetVueVersion === 3) {
       exec('npm publish --access public --tag next', { stdio: 'inherit', cwd: distDir });
       exec(`npm dist-tag add vue-use-three@${pkgVersion} vue3`, { stdio: 'inherit', cwd: distDir });
