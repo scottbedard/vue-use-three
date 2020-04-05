@@ -26,5 +26,6 @@ module.exports = {
   updateImport,
 };
 
-if (require.main === module)
+if (require.main === module) {
   updateImport();
+}

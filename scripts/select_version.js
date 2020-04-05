@@ -1,11 +1,13 @@
 async function selectVersion() {
   let version = -1;
 
-  if (process.argv[2] === 'all')
+  if (process.argv[2] === 'all') {
     return 0;
+  }
 
-  if (process.argv[2])
+  if (process.argv[2]) {
     version = +process.argv[2].slice(0, 1);
+  }
 
   if (!version) {
     const inquirer = require('inquirer');
@@ -19,11 +21,12 @@ async function selectVersion() {
       },
     ]);
 
-    if (result.switch)
+    if (result.switch) {
       version = +result.switch.slice(0, 1);
+    }
   }
 
-  return version
+  return version;
 }
 
 module.exports = {

@@ -5,9 +5,22 @@ module.exports = {
     jest: true,
     node: true,
   },
-  extends: [
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
+  overrides: [
+    {
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: [
+        '@typescript-eslint',
+      ],
+      rules: {
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,17 +30,17 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module',
   },
-  parser: '@typescript-eslint/parser',
   plugins: [
-    '@typescript-eslint',
     'markdown',
     'jest',
   ],
   root: true,
   rules: {
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
+    'brace-style': 'error',
+    'comma-dangle': ['error', 'always-multiline'],
+    'curly': 'error',
     'indent': ['error', 2],
     'semi': ['error', 'always', { omitLastInOneLineBlock: true }],
+    'keyword-spacing': 'error',
   },
 };

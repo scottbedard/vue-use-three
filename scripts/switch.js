@@ -11,7 +11,7 @@ async function backupApi() {
     await fs.copyFile(
       path.join(srcDir, 'api.ts'),
       path.join(srcDir, 'api.backup.ts'),
-    )
+    );
   } catch (e) {}
 }
 
@@ -54,5 +54,6 @@ module.exports = {
   switchApi,
 };
 
-if (require.main === module)
-  cli()
+if (require.main === module) {
+  cli();
+}
