@@ -1,11 +1,25 @@
-import { reactive } from '../../api';
+import { Object3D, Vector3 } from 'three';
+import { computed, watch } from '../../api';
 
-export function usePosition() {
-  const position = reactive({
-    x: 0,
-    y: 0,
-    z: 0,
-  });
+type Position = { x?: number, y?: number, z?: number }
+type NormalizedPosition = { x: number, y: number, z: number }
 
-  return { position };
+const normalize = (position: Position) => ({ x: 0, y: 0, z: 0, ...position });
+
+/**
+ * Sync object position.
+ *
+ * @param {Object3D} obj 
+ * @param {() => Position} fn
+ *
+ * @return {void}
+ */
+export function usePosition(obj: Object3D, fn: () => Position) {
+  const normalizedPosition = computed(() => normalize(fn()))
+
+  watch(normalizedPosition, ({ x, y, z }: NormalizedPosition) => {
+    obj.position.x = x;
+    obj.position.y = y;
+    obj.position.z = z;
+  }, { deep: true });
 }
