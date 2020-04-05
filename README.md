@@ -39,7 +39,7 @@ Alternatively, the library can be accessed via CDN.
 - [`usePosition`](#useposition) — Sync an object's local position with a vector
 - [`useRotation`](#userotation) — Sync an object's local rotation using Euler angles
 
-#### `useDisposable` _(Planned)_
+#### `useDisposable`
 
 This function binds [disposable objects](https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects) to the lifecycle of a component. When the component is destroyed, the object will be disposed of.
 
@@ -48,7 +48,10 @@ import { useDisposable } from 'vue-use-three';
 
 export default {
   setup() {
-    const geometry = useDisposable(new Geometry());
+    const geometry = new Geometry();
+    const material = new Material();
+
+    useDisposable(geometry, material);
   },
 };
 ```

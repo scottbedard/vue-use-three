@@ -17,6 +17,7 @@ module.exports = {
         '@typescript-eslint',
       ],
       rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-var-requires': 'off',
       },
