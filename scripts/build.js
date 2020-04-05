@@ -102,6 +102,10 @@ async function cli() {
   }
 }
 
+module.exports = {
+  buildFor,
+};
+
 if (require.main === module) {
   cli();
 }
