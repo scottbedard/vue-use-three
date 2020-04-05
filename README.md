@@ -78,15 +78,12 @@ export default {
     usePosition(obj, () => props.position);
   },
   props: {
-    position: {
-      default: () => ({ x: 0, y: 0, z: 0 }),
-      type: Object,
-    },
+    position: Object,
   },
 };
 ```
 
-#### `useRotation` _(Planned)_
+#### `useRotation`
 
 Sync an object's local rotation using Euler angles
 
@@ -95,7 +92,16 @@ import { useRotation } from 'vue-use-three';
 
 export default {
   setup() {
-    // ...
+    const obj = new Object3D();
+
+    // radians (default)
+    useRotation(obj, () => props.rotation);
+
+    // degrees
+    useRotation(obj, () => props.rotation, { unit: 'degrees' });
+  },
+  props: {
+    rotation: Object,
   },
 };
 ```
