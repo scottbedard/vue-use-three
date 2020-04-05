@@ -3,5 +3,5 @@
 /node_modules
 /src/api.backup.ts
 /src/api.ts
-/src/core/index.ts
+/src/index.ts
 /typings

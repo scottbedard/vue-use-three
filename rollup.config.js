@@ -14,24 +14,24 @@ const name = 'VueUseThree';
 export default [
   // scripts
   {
-    input: `src/core/index.ts`,
+    input: `src/index.ts`,
     output: [
       {
-        file: `dist/core/index.cjs.js`,
+        file: `dist/index.cjs.js`,
         format: 'cjs',
       },
       {
-        file: `dist/core/index.esm.js`,
+        file: `dist/index.esm.js`,
         format: 'es',
       },
       {
-        file: `dist/core/index.umd.js`,
+        file: `dist/index.umd.js`,
         format: 'umd',
         globals,
         name,
       },
       {
-        file: `dist/core/index.umd.min.js`,
+        file: `dist/index.umd.min.js`,
         format: 'umd',
         globals,
         name,
@@ -60,9 +60,9 @@ export default [
 
   // typings
   {
-    input: `./typings/core/index.d.ts`,
+    input: `./typings/index.d.ts`,
     output: {
-      file: `dist/core/index.d.ts`,
+      file: `dist/index.d.ts`,
       format: 'es',
     },
     plugins: [

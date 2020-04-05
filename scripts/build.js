@@ -10,7 +10,7 @@ const rootDir = path.resolve(__dirname, '..');
 const pkgDir = path.join(rootDir, 'package.json');
 
 async function buildMetaFiles(targetVersion, pkgVersion) {
-  const pkgDist = path.resolve(__dirname, '..', 'dist/core');
+  const pkgDist = path.resolve(__dirname, '..', 'dist');
 
   for (const metaFile of metaFiles) {
     await fs.copyFile(path.join(rootDir, metaFile), path.join(pkgDist, metaFile));
