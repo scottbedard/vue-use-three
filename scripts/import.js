@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const compositionsDir = path.resolve(__dirname, '../src/compositions');
 const pkgPath = path.resolve(__dirname, '../package.json');
 const srcDir = path.resolve(__dirname, '../src');
 
@@ -11,14 +10,20 @@ async function getVersion() {
 }
 
 async function updateImport(pkgVersion) {
-  const files = fs
-    .readdirSync(compositionsDir)
+  let content = `export const version = '${pkgVersion || await getVersion()}'\n\n`;
+
+  const compositions = fs
+    .readdirSync(path.resolve(__dirname, '../src/compositions'))
     .filter(f => f.startsWith('use'))
     .sort();
 
-  let content = '';
-  content += `export const version = '${pkgVersion || await getVersion()}'\n\n`;
-  content += files.map(f => `export * from './compositions/${f}'\n`).join('');
+  content += compositions.map(f => `export * from './compositions/${f}'\n`).join('');
+
+  const components = fs
+    .readdirSync(path.resolve(__dirname, '../src/components'))
+    .sort();
+  
+  content += components.map(f => `export * from './components/${f}'\n`).join('');
 
   fs.writeFileSync(path.join(srcDir, 'index.ts'), content);
 }
