@@ -64,6 +64,22 @@ export default {
 };
 ```
 
+#### `useNesting`
+
+Create a nesting context for 3D objects.
+
+```js
+import { useNesting } from 'vue-use-three';
+
+export default {
+  setup() {
+    const obj = new Object3D();
+
+    useNesting(obj);
+  },
+};
+```
+
 #### `usePosition`
 
 Sync an object's local position with a vector
