@@ -1,7 +1,7 @@
 /coverage
 /dist
 /node_modules
-/src/api.backup.ts
+/src/**/*.backup.ts
 /src/api.ts
 /src/index.ts
 /typings

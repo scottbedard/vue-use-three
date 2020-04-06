@@ -6,16 +6,25 @@ const { updateImport } = require('./import');
 
 const srcDir = path.resolve(__dirname, '../src');
 
-async function backupApi() {
+async function backupApi(targetVersion) {
   try {
     await fs.copyFile(
       path.join(srcDir, 'api.ts'),
       path.join(srcDir, 'api.backup.ts'),
     );
+
+    fs
+      .readdirSync(path.resolve(__dirname, '../src/components'))
+      .forEach(async(name) => {
+        await fs.copyFile(
+          path.join(srcDir, 'components', name, 'index.ts'),
+          path.join(srcDir, 'components', name, 'index.backup.ts'),
+        );
+      });
   } catch (e) {}
 }
 
-async function restoreApi() {
+async function restoreApi(targetVersion) {
   try {
     await fs.copyFile(
       path.join(srcDir, 'api.backup.ts'),
@@ -25,6 +34,19 @@ async function restoreApi() {
     await fs.remove(
       path.join(srcDir, 'api.backup.ts'),
     );
+
+    fs
+      .readdirSync(path.resolve(__dirname, '../src/components'))
+      .forEach(async(name) => {
+        await fs.copyFile(
+          path.join(srcDir, 'components', name, 'index.backup.ts'),
+          path.join(srcDir, 'components', name, 'index.ts'),
+        );
+
+        await fs.remove(
+          path.join(srcDir, 'components', name, 'index.backup.ts'),
+        );
+      });
   } catch (e) {}
 }
 
