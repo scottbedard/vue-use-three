@@ -44,6 +44,7 @@ Alternatively, the library can be accessed via CDN.
 ## ⚡ Compositions
 
 - [`useDisposable`](#usedisposable) — Bind a disposable object to a component's lifecycle
+- [`useNesting`](#usenesting) — Create a 3D nesting context
 - [`usePosition`](#useposition) — Sync an object's local position with a vector
 - [`useRotation`](#userotation) — Sync an object's local rotation using Euler angles
 
@@ -66,7 +67,7 @@ export default {
 
 #### `useNesting`
 
-Create a nesting context for 3D objects.
+Create a 3D nesting context.
 
 ```js
 import { useNesting } from 'vue-use-three';
@@ -82,7 +83,7 @@ export default {
 
 #### `usePosition`
 
-Sync an object's local position with a vector
+Sync an object's local position with a vector.
 
 ```js
 import { usePosition } from 'vue-use-three';
@@ -101,7 +102,7 @@ export default {
 
 #### `useRotation`
 
-Sync an object's local rotation using Euler angles
+Sync an object's local rotation using Euler angles.
 
 ```js
 import { useRotation } from 'vue-use-three';
