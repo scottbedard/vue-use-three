@@ -15,8 +15,6 @@ export function usePosition(obj: Object3D, fn: () => VectorObj): void {
   const position = computed(() => normalizeVectorObj(fn()));
 
   watch(position, ({ x, y, z }) => {
-    obj.position.x = x;
-    obj.position.y = y;
-    obj.position.z = z;
+    obj.position.set(x, y, z);
   }, { deep: true });
 }
