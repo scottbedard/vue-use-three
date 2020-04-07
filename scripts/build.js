@@ -3,6 +3,7 @@ const exec = require('child_process').execSync;
 const fs = require('fs-extra');
 const path = require('path');
 const { backupApi, restoreApi, switchApi } = require('./switch');
+const { migrateComponents } = require('./migrate');
 const { selectVersion } = require('./select_version');
 
 const metaFiles = ['LICENSE'];
@@ -58,6 +59,10 @@ async function buildFor(targetVersion, publishCallback) {
   await fs.writeFile(pkgDir, JSON.stringify(pkg, null, 2));
   await backupApi();
   await switchApi(targetVersion, pkgVersion);
+
+  if (targetVersion === 3) {
+    await migrateComponents();
+  }
 
   try {
     consola.info('Clean up');
