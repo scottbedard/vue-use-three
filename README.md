@@ -50,17 +50,24 @@ Alternatively, the library can be accessed via CDN.
 
 #### `useDisposable`
 
-This function binds [disposable objects](https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects) to the lifecycle of a component. When the component is destroyed, the object will be disposed of.
+This function binds [disposable objects](https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects) to the lifecycle of a component. When the component is destroyed, the object will be disposed of. If the object to be disposed is not created durinig the setup call, use a function to lazily dispose of the object.
 
 ```js
 import { useDisposable } from 'vue-use-three';
 
 export default {
   setup() {
+    // normal disposal
     const geometry = new Geometry();
-    const material = new Material();
 
-    useDisposable(geometry, material);
+    // lazy disposal
+    let material;
+
+    onMounted(() => {
+      material = new Material;
+    });
+
+    useDisposable(geometry, () => material);
   },
 };
 ```
