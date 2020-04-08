@@ -1,8 +1,15 @@
 import { mount } from '@vue/test-utils';
 import { Renderer } from './index';
 import { defineComponent } from '../../api';
+import { WebGLRenderer } from 'three';
+
+jest.mock('three');
 
 describe('<Renderer>', () => {
+  beforeEach(() => {
+    (WebGLRenderer as jest.Mock).mockClear();
+  });
+
   it('renders a canvas and default slot', () => {
     const vm: any = mount(defineComponent({
       components: {

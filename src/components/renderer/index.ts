@@ -1,15 +1,14 @@
 import Vue from 'vue';
-import { defineComponent, onMounted, ref } from '../../api';
+import { defineComponent, ref } from '../../api';
+import { useRenderer } from '../../compositions/useRenderer';
 
 export const Renderer = defineComponent({
   setup() {
-    const canvas = ref(null);
+    const canvas = ref<HTMLCanvasElement>();
 
-    onMounted(() => {
-      // show time...
-    });
+    const { empty, getRenderer } = useRenderer({ canvas });
 
-    return { canvas };
+    return { empty, getRenderer };
   },
   render(h: typeof Vue.prototype.$createElement) {
     return h('div', [
