@@ -21,10 +21,10 @@ type LazyDisposable = () => Disposable;
 export function useDisposable(...args: (Disposable|LazyDisposable)[]): void {
   onUnmounted(() => {
     args.forEach(disposable => {
-      if (isFunction(disposable)) {
-        disposable().dispose();
-      } else {
-        disposable.dispose();
+      const obj = isFunction(disposable) ? disposable() : disposable;
+
+      if (isFunction(obj.dispose)) {
+        obj.dispose();
       }
     });
   });

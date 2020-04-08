@@ -1,15 +1,25 @@
 import { Scene, WebGLRenderer } from 'three';
+import { useDisposable } from '../useDisposable';
 import { computed, onMounted, onUnmounted, provide, ref, Ref } from '../../api';
 
+/**
+ * Renderer API.
+ */
 export type RendererApi = {
   addScene: (scene: Scene) => void;
   removeScene: (scene: Scene) => void;
 }
 
+/**
+ * Renderer options.
+ */
 export type UseRendererOptions = {
   canvas: Ref<HTMLCanvasElement | undefined>;
 };
 
+/**
+ * Renderer context.
+ */
 export const rendererContext = Symbol();
 
 /**
@@ -42,9 +52,7 @@ export function useRenderer(options: UseRendererOptions) {
     });
   });
 
-  onUnmounted(() => {
-    renderer.dispose();
-  });
+  useDisposable(getRenderer);
 
   provide(rendererContext, rendererApi);
 
