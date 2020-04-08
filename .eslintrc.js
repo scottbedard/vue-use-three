@@ -23,12 +23,6 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
       },
     },
-    {
-      files: ['**/*.spec.ts'],
-      rules: {
-        '@typescript-eslint/no-explicit-any': 'off',
-      },
-    },
   ],
   parserOptions: {
     ecmaFeatures: {
