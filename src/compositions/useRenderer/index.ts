@@ -1,6 +1,6 @@
 import { Scene, WebGLRenderer } from 'three';
 import { useDisposable } from '../useDisposable';
-import { computed, onMounted, onUnmounted, provide, ref, Ref } from '../../api';
+import { computed, onMounted, provide, ref, Ref } from '../../api';
 
 /**
  * Renderer API.
