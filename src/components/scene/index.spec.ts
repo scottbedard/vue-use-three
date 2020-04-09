@@ -41,4 +41,17 @@ describe('<Scene>', () => {
     await vm.$nextTick();
     expect(renderer.empty).toBe(true);
   });
+
+  it('stores the containing element on the scene object', () => {
+    const vm: any = mount(defineComponent({
+      components: {
+        Scene: SceneComponent,
+      },
+      template: `<Scene ref="scene" />`,
+    })).vm;
+
+    const scene = vm.$refs.scene.getScene();
+    
+    expect(scene.userData.el).toBe(vm.$el);
+  });
 });

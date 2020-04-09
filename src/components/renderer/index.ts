@@ -8,7 +8,11 @@ export const Renderer = defineComponent({
 
     const { empty, getRenderer } = useRenderer({ canvas });
 
-    return { empty, getRenderer };
+    return {
+      canvas,
+      empty,
+      getRenderer,
+    };
   },
   render(h: typeof Vue.prototype.$createElement) {
     return h('div', [
