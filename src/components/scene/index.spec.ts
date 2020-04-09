@@ -5,11 +5,15 @@ import { defineComponent } from '../../api';
 import { Scene, WebGLRenderer } from 'three';
 
 jest.mock('three');
+WebGLRenderer.prototype.setClearColor = jest.fn();
+WebGLRenderer.prototype.setPixelRatio = jest.fn();
 
 describe('<Scene>', () => {
   beforeEach(() => {
     (Scene as unknown as jest.Mock).mockClear();
     (WebGLRenderer as jest.Mock).mockClear();
+    (WebGLRenderer.prototype.setClearColor as jest.Mock).mockClear();
+    (WebGLRenderer.prototype.setPixelRatio as jest.Mock).mockClear();
   });
 
   it('register and unregisters itself with the parent renderer', async() => {
