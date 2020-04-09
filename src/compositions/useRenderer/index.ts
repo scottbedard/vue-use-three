@@ -1,6 +1,6 @@
 import { Scene, WebGLRenderer } from 'three';
 import { useDisposable } from '../useDisposable';
-import { computed, onMounted, provide, ref, Ref } from '../../api';
+import { computed, onMounted, provide, ref, watch, Ref } from '../../api';
 
 /**
  * Renderer API.
@@ -31,6 +31,7 @@ export function useRenderer(options: UseRendererOptions) {
   let renderer: WebGLRenderer;
   const getRenderer = () => renderer;
   
+  const running = ref<boolean>(false);
   const scenes = ref<Array<() => Scene>>([]);
   const sceneCount = computed(() => scenes.value.length);
   const empty = computed(() => sceneCount.value === 0);
@@ -44,20 +45,58 @@ export function useRenderer(options: UseRendererOptions) {
     },
   };
 
+  const draw = () => {
+    console.log('draw');
+  };
+
+  const start = () => {
+    if (!running.value) {
+      running.value = true;
+
+      const tick = () => {
+        if (running.value) {
+          draw();
+          window.requestAnimationFrame(tick);
+        }
+      };
+
+      tick();
+    }
+  };
+
+  const stop = () => {
+    running.value = false;
+  };
+
   onMounted(() => {
     renderer = new WebGLRenderer({
       alpha: true,
       antialias: true,
       canvas: options.canvas.value,
     });
+
+    renderer.setClearColor(0x000000, 0);
+    renderer.setPixelRatio(window.devicePixelRatio);
   });
 
   useDisposable(getRenderer);
 
   provide(rendererContext, rendererApi);
 
+  watch(empty, () => {
+    if (empty.value) {
+      stop();
+    } else {
+      start();
+    }
+  });
+
   return {
-    getRenderer,
+    draw,
     empty,
+    getRenderer,
+    running,
+    start,
+    stop,
   };
 }
