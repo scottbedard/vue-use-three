@@ -17,7 +17,17 @@ export const Renderer = defineComponent({
   render(h: typeof Vue.prototype.$createElement) {
     return h('div', [
       this.$slots.default,
-      h('canvas', { ref: 'canvas' }),
+      h('canvas', {
+        ref: 'canvas',
+        style: {
+          height: '100%',
+          left: '0',
+          pointerEvents: 'none',
+          position: 'fixed',
+          top: '0',
+          width: '100%',
+        },
+      }),
     ]);
   },
 });
