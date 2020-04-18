@@ -34,19 +34,6 @@ async function restoreApi(targetVersion) {
     await fs.remove(
       path.join(srcDir, 'api.backup.ts'),
     );
-
-    fs
-      .readdirSync(path.resolve(__dirname, '../src/components'))
-      .forEach(async(name) => {
-        await fs.copyFile(
-          path.join(srcDir, 'components', name, 'index.backup.ts'),
-          path.join(srcDir, 'components', name, 'index.ts'),
-        );
-
-        await fs.remove(
-          path.join(srcDir, 'components', name, 'index.backup.ts'),
-        );
-      });
   } catch (e) {}
 }
 

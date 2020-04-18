@@ -130,57 +130,6 @@ export default {
 };
 ```
 
-## 🧩 Components
-
-These components will cover common use cases for working with Three.js, and will primarily be built with the above composition functions.
-
-- [`<Group>`](#group)
-- [`<PerspectiveCamera>`](#perspectivecamera)
-- [`<Renderer>`](#renderer)
-- [`<Scene>`](#scene)
-
-#### `<Group>` _(Planned)_
-
-A component to group child objects.
-
-```vue
-<Group>
-  <!-- ... -->
-</Group>
-```
-
-#### `<PerspectiveCamera>` _(Planned)_
-
-Create a [`PerspectiveCamera`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera) to render a scene with.
-
-```vue
-<Scene>
-  <PerspectiveCamera />
-</Scene>
-```
-
-#### `<Renderer>` _(Planned)_
-
-This component will be responsible for managing the [`WebGLRenderer`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer) context. It will also be responsible for managing child `Scene` components and all rendering. The renderer will also be responsible for the actual `<canvas>` DOM element.
-
-```vue
-<Renderer>
-  <!-- ... -->
-</Renderer>
-```
-
-#### `<Scene>` _(Planned)_
-
-Scenes will mark a line in the sand between the DOM and our canvas. They will be "abstract" components, and will not render any child DOM elements. We'll use the bounding box of an outer `<div>` element to determine where to render out content. If the `<div>` is not within the viewport, the scene will not be rendered. This will allow for many scenes to exist within a single renderer.
-
-```vue
-<Renderer>
-  <Scene>
-    <!-- ... -->
-  </Scene>
-</Renderer>
-```
-
 ## 📄 License
 
 [MIT](https://github.com/scottbedard/vue-use-three/blob/master/LICENSE)
