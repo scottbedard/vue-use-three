@@ -35,7 +35,7 @@ Alternatively, the library can be accessed via CDN.
 
 ```html
 <!-- Vue 3 -->
-<script src="https://unpkg.com/vue-use-three@vue3"></script> 
+<script src="https://unpkg.com/vue-use-three@vue3"></script>
 
 <!-- Vue 2 -->
 <script src="https://unpkg.com/vue-use-three@vue2"></script>
@@ -46,7 +46,9 @@ Alternatively, the library can be accessed via CDN.
 - [`useDisposable`](#usedisposable) — Bind a disposable object to a component's lifecycle
 - [`useNesting`](#usenesting) — Create a 3D nesting context
 - [`usePosition`](#useposition) — Sync an object's local position with a vector
+- [`useRenderer`](#userenderer) - Manage a WebGLRenderer
 - [`useRotation`](#userotation) — Sync an object's local rotation using Euler angles
+- [`useScene`](#usescene) - Manage a scene
 
 #### `useDisposable`
 
@@ -98,11 +100,28 @@ import { usePosition } from 'vue-use-three';
 export default {
   setup(props) {
     const obj = new Object3D();
-    
+
     usePosition(obj, () => props.position);
   },
   props: {
     position: Object,
+  },
+};
+```
+
+#### `useRenderer`
+
+This composition is responsible for managing a [`WebGLRenderer`](https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer) context. It is designed to work with [`useScene`](#usescene) via a provide/inject relationship.
+
+```js
+import { WebGLRenderer } from 'three';
+import { useRenderer } from 'vue-use-three';
+
+export default {
+  setup() {
+    const renderer = new WebGLRenderer();
+
+    useRenderer(renderer);
   },
 };
 ```
@@ -126,6 +145,23 @@ export default {
   },
   props: {
     rotation: Object,
+  },
+};
+```
+
+#### `useScene`
+
+This composition manages a [`Scene`](https://threejs.org/docs/index.html#api/en/scenes/Scene). It is designed to work with [`useRenderer`](#userenderer) via a prodive/inject relationship.
+
+```js
+import { Scene } from 'three';
+import { useScene } from 'vue-use-three';
+
+export default {
+  setup() {
+    const scene = new Scene();
+
+    useScene(scene);
   },
 };
 ```
