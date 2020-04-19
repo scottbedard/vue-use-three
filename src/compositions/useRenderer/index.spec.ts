@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { WebGLRenderer } from 'three';
-import { context, useRenderer, RendererApi } from './index';
+import { rendererContext, useRenderer, RendererApi } from './index';
 import { defineComponent, inject } from '../../api';
 
 jest.mock('three');
@@ -23,10 +23,10 @@ describe('useRenderer', () => {
       components: {
         Scene: {
           setup() {
-            const api = inject<RendererApi | null>(context, null);
+            const rendererApi = inject<RendererApi | null>(rendererContext, null);
 
-            expect(typeof api?.addScene).toBe('function');
-            expect(typeof api?.removeScene).toBe('function');
+            expect(typeof rendererApi?.addScene).toBe('function');
+            expect(typeof rendererApi?.removeScene).toBe('function');
 
             innerSetupCalled = true;
 

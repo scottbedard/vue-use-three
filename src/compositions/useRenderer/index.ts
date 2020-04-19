@@ -13,7 +13,7 @@ export type RendererApi = {
 /**
  * Renderer context.
  */
-export const context = Symbol();
+export const rendererContext = Symbol();
 
 /**
  * Create a render context to manage scenes.
@@ -23,7 +23,7 @@ export const context = Symbol();
 export function useRenderer(renderer: WebGLRenderer) {
   useDisposable(renderer);
 
-  const empty = ref<boolean>(false);
+  const empty = ref<boolean>(true);
 
   let scenes: Scene[] = [];
 
@@ -40,5 +40,9 @@ export function useRenderer(renderer: WebGLRenderer) {
     },
   };
 
-  provide(context, api);
+  provide(rendererContext, api);
+
+  return {
+    empty,
+  };
 }
