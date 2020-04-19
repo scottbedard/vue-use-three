@@ -121,7 +121,15 @@ export default {
   setup() {
     const renderer = new WebGLRenderer();
 
-    useRenderer(renderer);
+    const {
+      empty, // computed property determining if there are scenes
+      getScenes, // method to return array of scenes
+    } = useRenderer(renderer);
+
+    return {
+      empty,
+      getScenes,
+    };
   },
 };
 ```

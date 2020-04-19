@@ -27,6 +27,8 @@ export function useRenderer(renderer: WebGLRenderer) {
 
   let scenes: Scene[] = [];
 
+  const getScenes = () => scenes;
+
   const updateEmpty = () => empty.value = scenes.length === 0;
 
   const api: RendererApi = {
@@ -44,5 +46,6 @@ export function useRenderer(renderer: WebGLRenderer) {
 
   return {
     empty,
+    getScenes,
   };
 }

@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
-import { WebGLRenderer } from 'three';
+import { Scene, WebGLRenderer } from 'three';
+import { useScene } from '../useScene';
 import { rendererContext, useRenderer, RendererApi } from './index';
 import { defineComponent, inject } from '../../api';
 
@@ -43,5 +44,35 @@ describe('useRenderer', () => {
     })).vm;
 
     expect(innerSetupCalled).toBe(true);
+  });
+
+  it('exposes a getScenes function', () => {
+    const scene = new Scene();
+
+    const vm: any = mount(defineComponent({
+      setup() {
+        const renderer = new WebGLRenderer();
+
+        const { getScenes } = useRenderer(renderer);
+
+        return { getScenes };
+      },
+      components: {
+        Scene: {
+          setup() {
+            useScene(scene);
+            return {};
+          },
+          template: `<div />`,
+        },
+      },
+      template: `
+        <div>
+          <Scene />
+        </div>
+      `,
+    })).vm;
+
+    expect(vm.getScenes()).toEqual([scene]);
   });
 });
