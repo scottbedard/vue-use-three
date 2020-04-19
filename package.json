@@ -20,7 +20,7 @@
     "husky": "^4.2.3",
     "inquirer": "^7.1.0",
     "jest": "^25.2.6",
-    "lint-staged": "^10.1.1",
+    "lint-staged": "^10.1.6",
     "rimraf": "^3.0.2",
     "rollup": "^2.3.2",
     "rollup-plugin-delete": "^1.2.0",
